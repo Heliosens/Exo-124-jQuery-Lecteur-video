@@ -2,8 +2,10 @@
 let player = $('.player__video').first();
 let progress = $('.progress__filled').first();
 let playBtn = $('.player__button').first();
+let vol = $('#volume');
+let rate = $('#playbackRate');
 
-console.log(player)
+
 
 playBtn.click(function (){
     if(playBtn.text() === "►" ){
@@ -14,12 +16,12 @@ playBtn.click(function (){
         player.trigger('pause');
         playBtn.text("►")
     }
-
 })
 
 player.get(0).addEventListener('timeupdate', function (){
     let t = (player.get(0).currentTime / 596.5) * 100;
-    console.log(player.get(0).currentTime);
     progress.css('width', t + "%")
+    player.get(0).volume = vol.val();
+    player.get(0).playbackRate = rate.val();
 })
 
